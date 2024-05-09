@@ -1,0 +1,6 @@
+@EeveePlushAPI_HostAddress = http://localhost:5109
+
+GET {{EeveePlushAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
