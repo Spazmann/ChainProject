@@ -37,14 +37,14 @@ public class MessageController : ControllerBase
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Message updatedMessage)
     {
-        var book = await _messageService.GetAsync(id);
+        var message = await _messageService.GetAsync(id);
 
-        if (book is null)
+        if (message is null)
         {
             return NotFound();
         }
 
-        updatedMessage.Id = book.Id;
+        updatedMessage.Id = message.Id;
 
         await _messageService.UpdateAsync(id, updatedMessage);
 
@@ -54,9 +54,9 @@ public class MessageController : ControllerBase
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
-        var book = await _messageService.GetAsync(id);
+        var message = await _messageService.GetAsync(id);
 
-        if (book is null)
+        if (message is null)
         {
             return NotFound();
         }
