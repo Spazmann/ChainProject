@@ -15,6 +15,6 @@ ENV SERVER_PORT=8080
 ENV MONGO_HOST=MessageAPIServiceDBMongo 
 ENV MONGO_PORT=27017 
 ENV MONGO_DB=MessageDB 
-ENV EUREKA_HOST=SEN300MessageEurekaRegistry
+ENV EUREKA_HOST=MessageEurekaRegistry
 
 ENTRYPOINT ["dotnet", "MessageService.dll"]
