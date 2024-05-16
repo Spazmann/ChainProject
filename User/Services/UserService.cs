@@ -5,9 +5,7 @@ public class UserService{
     private readonly IMongoCollection<Users> _userCollection;
     private readonly ILogger<UserService> _logger;
 
-    public UserService(
-        ILogger<UserService> logger,
-        IOptions<UserApiDatabase> userApiDatabase)
+    public UserService(ILogger<UserService> logger,IOptions<UserApiDatabase> userApiDatabase)
     {
         _logger = logger;
         _logger.LogInformation("Using connection string: {ConnectionString}", userApiDatabase.Value.ConnectionString);

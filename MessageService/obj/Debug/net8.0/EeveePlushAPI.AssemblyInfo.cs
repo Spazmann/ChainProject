@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EeveePlushAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c4a0744e7f76cd0de819fc79f792308905c6d0b6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce1953789124e09b61445828ee98269987256abe")]
 [assembly: System.Reflection.AssemblyProductAttribute("EeveePlushAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EeveePlushAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
