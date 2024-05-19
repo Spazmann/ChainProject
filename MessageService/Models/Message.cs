@@ -9,7 +9,7 @@ public class Message
 
     public string MessageContent { get; set; } = null!;
 
-    public decimal Date { get; set; }
+    public string Date { get; set; }
 
     public string ChannelID { get; set; } = null!;
 }
