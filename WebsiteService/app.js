@@ -23,6 +23,15 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
+app.use((req, res, next) => {
+    res.status(404).send('404: Page Not Found');
+  });
+  
+  app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('500: Internal Server Error');
+  });
+
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
