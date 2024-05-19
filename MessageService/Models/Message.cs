@@ -7,10 +7,9 @@ public class Message
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
 
-    [BsonElement("Name")]
-    public string MessageContents { get; set; } = null!;
+    public string MessageContent { get; set; } = null!;
 
     public decimal Date { get; set; }
 
-    public string Channel { get; set; } = null!;
+    public string ChannelID { get; set; } = null!;
 }
