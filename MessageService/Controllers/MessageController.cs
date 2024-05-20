@@ -27,7 +27,7 @@ public class MessageController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(Message newMessage)
+    public async Task<IActionResult> Post([FromBody]Message newMessage)
     {
         await _messageService.CreateAsync(newMessage);
 
