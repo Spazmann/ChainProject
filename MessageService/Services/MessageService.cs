@@ -23,7 +23,7 @@ public class MessageService
         var mongoDatabase = mongoClient.GetDatabase(messageAPIDatabaseSettings.Value.DatabaseName);
         _messagesCollection = mongoDatabase.GetCollection<Message>(messageAPIDatabaseSettings.Value.MessageCollectionName);
 
-        socket = IO.Socket(socketIOSettings.Value.ServerUrl);
+        socket = IO.Socket("localhost:3003");
 
         socket.On(Socket.EVENT_CONNECT, () =>
         {

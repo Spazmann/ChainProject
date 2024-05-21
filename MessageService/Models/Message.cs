@@ -7,6 +7,8 @@ public class Message
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
 
+    public string username {get;set;}
+
     public string MessageContent { get; set; } = null!;
 
     public string Date { get; set; }

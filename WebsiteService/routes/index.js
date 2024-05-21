@@ -3,7 +3,7 @@ var router = express.Router();
 const { MongoClient } = require('mongodb');
 
 const uri = 'mongodb://localhost:27017';
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(uri);
 
 async function getDataFromDb() {
   try {
@@ -32,7 +32,7 @@ router.get('/', async function(req, res, next) {
       const { messages, channels } = await getDataFromDb();
 
       const dmList = channels.map(channel => ({
-        name: channel.ChannelName,
+        name: channel.name,
         members: `${channel.Users.length} Members`
       }));
 
