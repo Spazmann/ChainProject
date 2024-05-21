@@ -1,4 +1,4 @@
-public class MessageAPIDatabaseSettings
+public class ChannelAPIDatabaseSettings
 {
     public string ConnectionString { get; set; } = "mongodb://localhost:27017";
 

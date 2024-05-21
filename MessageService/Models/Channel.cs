@@ -1,7 +1,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-public class Message
+public class Channel
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]

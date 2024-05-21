@@ -31,7 +31,7 @@ public class ChannelController : ControllerBase
     {
         await _channelService.CreateAsync(newChannel);
 
-        return CreatedAtAction(nameof(Get), new { id = newChannel.Id }, newChannel);
+        return CreatedAtAction(nameof(Get), new { id = newChannel.ChannelId }, newChannel);
     }
 
     [HttpPut("{id:length(24)}")]
@@ -44,7 +44,7 @@ public class ChannelController : ControllerBase
             return NotFound();
         }
 
-        updatedChannel.Id = channel.Id;
+        updatedChannel.ChannelId = channel.ChannelId;
 
         await _channelService.UpdateAsync(id, updatedChannel);
 

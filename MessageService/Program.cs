@@ -2,7 +2,6 @@ using Microsoft.Extensions.Options;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Eureka;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MessageAPIDatabaseSettings>(
@@ -11,13 +10,20 @@ builder.Services.Configure<MessageAPIDatabaseSettings>(
 builder.Services.Configure<SocketIOSettings>(
     builder.Configuration.GetSection("SocketIO"));
 
+builder.Services.Configure<ChannelAPIDatabaseSettings>(
+    builder.Configuration.GetSection("ChannelAPIDatabaseSettings"));
+
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<MessageAPIDatabaseSettings>>().Value);
 
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<SocketIOSettings>>().Value);
 
+builder.Services.AddSingleton(sp =>
+    sp.GetRequiredService<IOptions<ChannelAPIDatabaseSettings>>().Value);
+
 builder.Services.AddSingleton<MessageService>();
+builder.Services.AddSingleton<ChannelService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

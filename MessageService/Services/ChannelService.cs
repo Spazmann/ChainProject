@@ -26,7 +26,7 @@ public class ChannelService
         await _channelsCollection.Find(_ => true).ToListAsync();
 
     public async Task<Channel?> GetAsync(string id) =>
-        await _channelsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+        await _channelsCollection.Find(x => x.ChannelId == id).FirstOrDefaultAsync();
 
     public async Task CreateAsync(Channel newChannel)
     {
@@ -35,11 +35,11 @@ public class ChannelService
 
     public async Task UpdateAsync(string id, Channel updatedChannel)
     {
-        await _channelsCollection.ReplaceOneAsync(x => x.Id == id, updatedChannel);
+        await _channelsCollection.ReplaceOneAsync(x => x.ChannelId == id, updatedChannel);
     }
 
     public async Task RemoveAsync(string id)
     {
-        await _channelsCollection.DeleteOneAsync(x => x.Id == id);
+        await _channelsCollection.DeleteOneAsync(x => x.ChannelId == id);
     }
 }
