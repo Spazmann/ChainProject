@@ -21,6 +21,16 @@ html
                 if dm.members
                   .dm-members= dm.members
       .main-content
+        .main-content-header
+          .dm-header= dmList[0].name
+          if user
+            a.user-header(href="#")
+              .user-header-username= user.Username
+              .avatar
+                img(src="https://via.placeholder.com/40" alt="User Avatar")
+          else
+            a.user-header(href="#")
+              .user-header-login= "Login"
         .message-list
           each message in messsageList
             .message-item

@@ -80,6 +80,55 @@ body {
   flex-direction: column;
 }
 
+.main-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #202225;
+  border-bottom: 1px solid #2f3136;
+}
+
+.dm-header {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  background-color: #3d3e41;
+  padding: 6px 10px; 
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-header .avatar {
+  display: flex;
+  align-items: center;
+}
+
+.user-header-username {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.user-header-username {
+  margin-right: 10px;
+  font-weight: bold;
+  padding: 6px 10px; 
+}
+
+.user-header:hover {
+  background-color: #4b4c4f;
+}
+
+.user-header-username {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
 .message-list {
   flex: 1;
   display: flex;
