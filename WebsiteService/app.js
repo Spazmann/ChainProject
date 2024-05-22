@@ -3,11 +3,20 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var createAccountRouter = require('./routes/createAccount');
  
 const app = express();
+
+app.use(session({
+  secret: '1234', 
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
  
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -20,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/createAccount', createAccountRouter)
 
 app.use(function(req, res, next) {
     next(createError(404));

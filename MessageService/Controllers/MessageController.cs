@@ -27,9 +27,14 @@ public class MessageController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody]Message newMessage)
+    public async Task<IActionResult> Post([FromBody] Message newMessage)
     {
-        await _messageService.CreateAsync(newMessage);
+        if (string.IsNullOrEmpty(newMessage.Date))
+        {
+            newMessage.Date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
+        }
+
+        await _channelService.CreateAsync(newMessage);
 
         return CreatedAtAction(nameof(Get), new { id = newMessage.Id }, newMessage);
     }

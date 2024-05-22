@@ -1,43 +1,23 @@
 var express = require('express');
 var router = express.Router();
-const { MongoClient } = require('mongodb');
-
-const uri = 'mongodb://localhost:27017';
-const client = new MongoClient(uri);
-
-async function getDataFromDb() {
-  try {
-    await client.connect();
-    const database = client.db('MessageDB'); 
-    const messagesCollection = database.collection('messages'); 
-    const channelsCollection = database.collection('channels');
-
-    const messages = await messagesCollection.find().toArray();
-    const channels = await channelsCollection.find().toArray();
-
-    return { messages, channels };
-  } finally {
-    await client.close();
-  }
-}
+const dal = require("../apiData/userData.js")
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  const user = {Id:"3892132138210983021", Username:"Spazmann", Email:"email@gmail.com"}
-  //const user = null
+  const user = req.session.user; 
   if (!user) {
     res.render('login', { title: 'Login' });
   } else {
     try {
-      const { messages, channels } = await getDataFromDb();
+      const { messages, channels } = null;
 
       const dmList = channels.map(channel => ({
-        name: channel.name,
+        name: channel.ChannelName,
         members: `${channel.Users.length} Members`
       }));
 
       const messsageList = messages.map(message => ({
-        username: message.ChannelID,
+        username: message.Username,
         message: message.MessageContent
       }));
 

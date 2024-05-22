@@ -26,9 +26,39 @@ public class UserController : ControllerBase
         return user;
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Post([FromBody]User newUser)
+    [HttpGet("{username}")]
+    public async Task<ActionResult<User>> GetByUsername(string username)
     {
+        var user = await _userService.GetByUsernameAsync(username);
+
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        return user;
+    }
+
+    [HttpGet("exists/{username}")]
+    public async Task<IActionResult> DoesUserUsernameExist(string username)
+    {
+        var user = await _userService.GetByUsernameAsync(username);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return Ok(true);
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] User newUser)
+    {
+        if (newUser == null)
+        {
+            return BadRequest();
+        }
+
         await _userService.CreateAsync(newUser);
 
         return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);

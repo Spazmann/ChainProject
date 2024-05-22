@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Create Account - Chain
+    link(rel="stylesheet" href="/stylesheets/login.css")
+    script(src="/javascripts/login.js")
+  body
+    .login-container
+      .login-box
+        h1 Create Account
+        form(action="/createAccount/create" method="POST")
+          .input-group
+            label(for="username") Username
+            input(type="text" id="username" name="username" placeholder="Enter your username" required)
+          .input-group
+            label(for="email") Email
+            input(type="text" id="email" name="email" placeholder="Enter your email" required)
+          .input-group
+            label(for="password") Password
+            input(type="password" id="password" name="password" placeholder="Enter your password" required)
+          if message
+            p.message= message
+          button.login-button(type="submit") Create Account

@@ -7,11 +7,11 @@ public class Message
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
 
-    public string username {get;set;}
+    public string Username { get; set; } = null!;
 
     public string MessageContent { get; set; } = null!;
 
-    public string Date { get; set; }
+    public string Date { get; set; } = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
 
     public string ChannelID { get; set; } = null!;
 }
