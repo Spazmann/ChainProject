@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const dal = require("../apiData/data.js")
+const dal = require("../apiData/userData.js")
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {

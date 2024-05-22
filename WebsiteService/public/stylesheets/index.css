@@ -89,6 +89,16 @@ body {
   border-bottom: 1px solid #2f3136;
 }
 
+.header-left {
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
 .dm-header {
   font-weight: bold;
   font-size: 1.2em;
@@ -114,19 +124,8 @@ body {
   font-weight: bold;
 }
 
-.user-header-username {
-  margin-right: 10px;
-  font-weight: bold;
-  padding: 6px 10px; 
-}
-
 .user-header:hover {
   background-color: #4b4c4f;
-}
-
-.user-header-username {
-  margin-right: 10px;
-  font-weight: bold;
 }
 
 .message-list {

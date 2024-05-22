@@ -1,9 +1,11 @@
 using Microsoft.Extensions.Options;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Eureka;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
 builder.Services.Configure<MessageAPIDatabaseSettings>(
     builder.Configuration.GetSection("MessageAPIDatabaseSettings"));
 
@@ -24,6 +26,9 @@ builder.Services.AddSingleton(sp =>
 
 builder.Services.AddSingleton<MessageService>();
 builder.Services.AddSingleton<ChannelService>();
+
+builder.Services.AddSingleton<IMongoClient>(s =>
+    new MongoClient(builder.Configuration.GetValue<string>("ChannelAPIDatabaseSettings:ConnectionString")));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

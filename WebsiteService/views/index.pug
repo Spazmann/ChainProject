@@ -22,23 +22,27 @@ html
                   .dm-members= dm.members
       .main-content
         .main-content-header
-          .dm-header= dmList[0].name
-          if user
-            a.user-header(href="#")
-              .user-header-username= user.Username
-              .avatar
-                img(src="https://via.placeholder.com/40" alt="User Avatar")
-          else
-            a.user-header(href="#")
-              .user-header-login= "Login"
-        .message-list
-          each message in messsageList
-            .message-item
-              .avatar
-                img(src="https://via.placeholder.com/40" alt="User Avatar")
-              .message-info
-                .message-username= message.username
-                .message-message= message.message
-        .message-input
-          input(type="text" placeholder="Type a message...")
-          button.send-button Send
+          .header-left
+            if message
+              .dm-header= dmList[0].name
+          .header-right
+            if user
+              a.user-header(href="#")
+                .user-header-username= user.username
+                .avatar
+                  img(src="https://via.placeholder.com/40" alt="User Avatar")
+            else
+              a.user-header(href="#")
+                .user-header-login= "Login"
+        if message
+          .message-list
+            each message in messsageList
+              .message-item
+                .avatar
+                  img(src="https://via.placeholder.com/40" alt="User Avatar")
+                .message-info
+                  .message-username= message.username
+                  .message-message= message.message
+          .message-input
+            input(type="text" placeholder="Type a message...")
+            button.send-button Send

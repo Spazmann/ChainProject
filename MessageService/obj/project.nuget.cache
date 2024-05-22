@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JxnLqqz5gVygL8IuH+WVqbkn5Ui7Sk7lFX+k1zCXjF2HSHxPcrXthV8JXy0ncafZe4ywBqVPPzAnK3ppgP5M/w==",
+  "dgSpecHash": "rAtVZ4bwS4YvWyJfomTP2YAoLG0bjkPVlNUmzLzp+ngVjK1cZfq5lPcelMAK8TT0jxUyaG8X+WQRN9ElQL+iZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\MessageService.csproj",
   "expectedPackageFiles": [
@@ -114,12 +114,6 @@
     "C:\\Users\\dmann\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

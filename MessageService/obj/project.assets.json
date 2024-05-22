@@ -4838,6 +4838,7 @@
       "Microsoft.AspNetCore.OpenApi >= 8.0.0",
       "Microsoft.EntityFrameworkCore >= 9.0.0-preview.2.24128.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0-preview.2.24128.4",
+      "Microsoft.Extensions.Options >= 9.0.0-preview.2.24128.5",
       "MongoDB.Driver >= 2.25.0",
       "Newtonsoft.Json >= 13.0.3",
       "RabbitMQ.Client >= 6.5.0",
@@ -4921,6 +4922,10 @@
             "target": "Package",
             "version": "[9.0.0-preview.2.24128.4, )"
           },
+          "Microsoft.Extensions.Options": {
+            "target": "Package",
+            "version": "[9.0.0-preview.2.24128.5, )"
+          },
           "MongoDB.Driver": {
             "target": "Package",
             "version": "[2.25.0, )"
@@ -4974,12 +4979,6 @@
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

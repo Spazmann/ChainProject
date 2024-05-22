@@ -34,7 +34,7 @@ public class MessageController : ControllerBase
             newMessage.Date = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
         }
 
-        await _channelService.CreateAsync(newMessage);
+        await _messageService.CreateAsync(newMessage);
 
         return CreatedAtAction(nameof(Get), new { id = newMessage.Id }, newMessage);
     }
