@@ -34,7 +34,7 @@ router.get('/{channelId}', async function(req, res, next) {
       const messages = null;
 
       const dmList = channels.map(channel => ({
-        name: channel.ChannelName,
+        name: channel.name,
         members: `${channel.Users.length} Members`
       }));
 

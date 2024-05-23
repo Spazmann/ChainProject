@@ -4855,11 +4855,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\MessageService.csproj",
       "projectName": "MessageService",
       "projectPath": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\MessageService.csproj",
       "packagesPath": "C:\\Users\\dmann\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\MessageService.csproj",
+      "projectName": "MessageService",
+      "projectPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\MessageService.csproj",
+      "packagesPath": "C:\\Users\\Darrell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\obj\\",
+>>>>>>> origin/Socket-Server-and-Client
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

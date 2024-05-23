@@ -11,6 +11,8 @@ public class Message
 
     public string MessageContent { get; set; } = null!;
 
+    public string ReceivedUser { get; set; } = null!; // Changed to PascalCase to follow C# naming conventions
+
     public string Date { get; set; } = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ");
 
     public string ChannelID { get; set; } = null!;
