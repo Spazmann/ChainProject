@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 public class MessageService
 {
@@ -35,11 +37,23 @@ public class MessageService
         _socket.On(Socket.EVENT_DISCONNECT, () => _logger.LogInformation("Disconnected from Socket.IO server"));
     }
 
-    public async Task<List<Message>> GetAsync() =>
-        await _messagesCollection.Find(_ => true).ToListAsync();
+    public async Task<List<Message>> GetAsync()
+    {
+        var messages = await _messagesCollection.Find(_ => true).ToListAsync();
+        var client = _httpClientFactory.CreateClient();
+        var response = await client.GetAsync(basicUrl);
+        return new List<Message>(messages);
+        
+        
+    }
 
-    public async Task<Message?> GetAsync(string id) =>
-        await _messagesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+        
+
+    public async Task<Message?> GetAsync(string id)
+    {
+        return await _messagesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+    }
+        
 
     public async Task CreateAsync(Message newMessage)
     {
@@ -52,11 +66,7 @@ public class MessageService
             {
                 await _messagesCollection.InsertOneAsync(newMessage);
                 _logger.LogInformation("Message created in MongoDB: {MessageContent}", newMessage.MessageContent);
-
-                // Emit a message creation event via Socket.IO
-                _socket.Emit("messageCreated", newMessage.MessageContent);
-                _logger.LogInformation("Emitted messageCreated event: {MessageContent}", newMessage.MessageContent);
-            }
+              }
             else
             {
                 _logger.LogError("Failed to call external API. Status code: {StatusCode}", response.StatusCode);
@@ -75,10 +85,7 @@ public class MessageService
             await _messagesCollection.ReplaceOneAsync(x => x.Id == id, updatedMessage);
             _logger.LogInformation("Message updated in MongoDB: {MessageContent}", updatedMessage.MessageContent);
 
-            // Emit a message update event via Socket.IO
-            _socket.Emit("messageUpdated", updatedMessage.MessageContent);
-            _logger.LogInformation("Emitted messageUpdated event: {MessageContent}", updatedMessage.MessageContent);
-        }
+          }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error updating message");

@@ -39,6 +39,13 @@ app.get('/message/:string1/:string2/:messageContent', async (req, res) => {
   res.send(`Message sent with string1: ${string1} and string2: ${string2}`);
 });
 
+app.get('/message', async (req, res) => {
+    const messages = req.body;
+    for(message in messages){
+        socket.emit('message',message.MessageContent)
+    }
+})
+
 const PORT = 3007;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
