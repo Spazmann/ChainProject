@@ -36,6 +36,16 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDiscoveryClient(builder.Configuration);
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost3002",
+        builder => builder
+            .WithOrigins("http://localhost:3002")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -45,6 +55,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Use the CORS policy
+app.UseCors("AllowLocalhost3002");
 
 app.UseAuthorization();
 

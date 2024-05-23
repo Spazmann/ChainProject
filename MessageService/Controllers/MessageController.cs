@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 [ApiController]
 [Route("[controller]")]
+[EnableCors("AllowLocalhost3002")]
 public class MessageController : ControllerBase
 {
     private readonly MessageService _messageService;
@@ -14,16 +16,16 @@ public class MessageController : ControllerBase
         await _messageService.GetAsync();
 
     [HttpGet("{id:length(24)}")]
-    public async Task<ActionResult<Message>> Get(string id)
+    public async Task<ActionResult<List<Message>>> Get(string id)
     {
-        var message = await _messageService.GetAsync(id);
+        var messages = await _messageService.GetMessagesByChannelIdAsync(id);
 
-        if (message is null)
+        if (messages == null || messages.Count == 0)
         {
             return NotFound();
         }
 
-        return message;
+        return Ok(messages);
     }
 
     [HttpPost]

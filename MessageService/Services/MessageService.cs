@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-
 
 public class MessageService
 {
@@ -39,38 +37,26 @@ public class MessageService
 
     public async Task<List<Message>> GetAsync()
     {
-        var messages = await _messagesCollection.Find(_ => true).ToListAsync();
-        var client = _httpClientFactory.CreateClient();
-        var response = await client.GetAsync(basicUrl);
-        return new List<Message>(messages);
-        
-        
+        return await _messagesCollection.Find(_ => true).ToListAsync();
     }
-
-        
 
     public async Task<Message?> GetAsync(string id)
     {
         return await _messagesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
     }
-        
+
+    public async Task<List<Message>> GetMessagesByChannelIdAsync(string channelId)
+    {
+        return await _messagesCollection.Find(x => x.ChannelID == channelId).ToListAsync();
+    }
 
     public async Task CreateAsync(Message newMessage)
     {
         try
-        {
-            var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"{basicUrl}{newMessage.Username}/{newMessage.ReceivedUser}/{newMessage.MessageContent}");
-            
-            if (response.IsSuccessStatusCode)
-            {
-                await _messagesCollection.InsertOneAsync(newMessage);
-                _logger.LogInformation("Message created in MongoDB: {MessageContent}", newMessage.MessageContent);
-              }
-            else
-            {
-                _logger.LogError("Failed to call external API. Status code: {StatusCode}", response.StatusCode);
-            }
+        {   
+            await _messagesCollection.InsertOneAsync(newMessage);
+            _logger.LogInformation("Message created in MongoDB: {MessageContent}", newMessage.MessageContent);
+
         }
         catch (Exception ex)
         {
@@ -84,8 +70,8 @@ public class MessageService
         {
             await _messagesCollection.ReplaceOneAsync(x => x.Id == id, updatedMessage);
             _logger.LogInformation("Message updated in MongoDB: {MessageContent}", updatedMessage.MessageContent);
-
-          }
+            _socket.Emit("updateMessage", updatedMessage);
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error updating message");
@@ -98,8 +84,6 @@ public class MessageService
         {
             await _messagesCollection.DeleteOneAsync(x => x.Id == id);
             _logger.LogInformation("Message removed from MongoDB: {MessageId}", id);
-
-            // Emit a message removal event via Socket.IO
             _socket.Emit("messageRemoved", id);
             _logger.LogInformation("Emitted messageRemoved event: {MessageId}", id);
         }

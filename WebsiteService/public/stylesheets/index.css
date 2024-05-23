@@ -149,8 +149,19 @@ body {
   margin-left: 10px;
 }
 
+.message-stats {
+  display: flex;
+  align-items: center;
+}
+
 .message-username {
   font-weight: bold;
+  margin-right: 10px;
+}
+
+.message-date {
+  font-size: 0.85em;
+  color: #b9bbbe;
 }
 
 .message-members {

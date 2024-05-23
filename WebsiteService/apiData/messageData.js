@@ -11,6 +11,17 @@ const getUserChannels = async (id) => {
     }
 };
 
+const getChannelMessages = async (channelId) => {
+    try {
+      const response = await axios.get(`${apiBaseUrl}/message/${channelId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+      return [];
+    }
+  };
+
 module.exports = {
-    getUserChannels
+    getUserChannels,
+    getChannelMessages
 };

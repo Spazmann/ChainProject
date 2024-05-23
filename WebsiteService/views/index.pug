@@ -5,6 +5,7 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Chain
     link(rel="stylesheet" href="/stylesheets/index.css")
+    script(src="/javascripts/index.js")
   body
     .app
       .dm-sidebar
@@ -13,7 +14,7 @@ html
           .add-dm +
         .dm-list
           each dm in dmList
-            .dm-item
+            a.dm-item(href=`/${dm.id}`)
               .avatar
                 img(src="https://via.placeholder.com/40" alt="User Avatar")
               .dm-info
@@ -23,8 +24,8 @@ html
       .main-content
         .main-content-header
           .header-left
-            if message
-              .dm-header= dmList[0].name
+            if channelName
+              .dm-header= channelName
           .header-right
             if user
               a.user-header(href="#")
@@ -34,15 +35,18 @@ html
             else
               a.user-header(href="#")
                 .user-header-login= "Login"
-        if message
+        if messageList && messageList.length > 0
           .message-list
-            each message in messsageList
+            each message in messageList
               .message-item
                 .avatar
                   img(src="https://via.placeholder.com/40" alt="User Avatar")
                 .message-info
-                  .message-username= message.username
+                  .message-stats
+                    .message-username= message.username
+                    .message-date= message.date
                   .message-message= message.message
+        if channelName
           .message-input
-            input(type="text" placeholder="Type a message...")
-            button.send-button Send
+            input(type="text" placeholder="Type a message..." id="messageInput")
+            button.send-button(onclick="sendMessage()") Send
