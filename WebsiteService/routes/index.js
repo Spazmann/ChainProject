@@ -32,7 +32,7 @@ router.get('/', async function(req, res, next) {
       const { messages, channels } = await getDataFromDb();
 
       const dmList = channels.map(channel => ({
-        name: channel.name,
+        name: channel.ChannelName,
         members: `${channel.Users.length} Members`
       }));
 

@@ -1,3 +1,3 @@
 public class SocketIOSettings {
-    public string ServerUrl { get; set; } = "localhost:3003";
+    public string ServerUrl { get; set; } = "http://localhost:3003";
 }
