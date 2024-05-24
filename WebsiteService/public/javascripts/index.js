@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="message-message">${message.MessageContent}</div>
         </div>
       `;
-      messageList.appendChild(messageItem);
+      messageList.prepend(messageItem);
     }
   }
 });
