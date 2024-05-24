@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {}
+    "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {
+    "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
         "projectName": "EeveePlushAPI",
-        "projectPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
+        "projectPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
         "packagesPath": "C:\\Users\\Darrell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\MessageService\\obj\\",
+        "outputPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[8.0.1, )"
             },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -74,6 +78,10 @@
               "target": "Package",
               "version": "[9.0.0-preview.2.24128.4, )"
             },
+            "Microsoft.Extensions.Options": {
+              "target": "Package",
+              "version": "[9.0.0-preview.2.24128.5, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.25.0, )"
@@ -85,6 +93,10 @@
             "RabbitMQ.Client": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "SocketIoClientDotNet": {
+              "target": "Package",
+              "version": "[0.9.13, )"
             },
             "Steeltoe.Discovery.ClientCore": {
               "target": "Package",

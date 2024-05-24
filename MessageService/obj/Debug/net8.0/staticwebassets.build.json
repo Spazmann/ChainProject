@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "by6tyHD3V4YYyixUBFnEX11tcK4GZ8vRQzE9z43vhl8=",
-  "Source": "MessageService",
-  "BasePath": "_content/MessageService",
+  "Hash": "uupKhb5dESGODmD1fRNK0F7y8PUeFXOEseOs4PS63qQ=",
+  "Source": "EeveePlushAPI",
+  "BasePath": "_content/EeveePlushAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

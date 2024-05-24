@@ -11,6 +11,12 @@ public class MessageController : ControllerBase
     public MessageController(MessageService messageService) =>
         _messageService = messageService;
 
+
+     [HttpGet("/message/hello")]
+    public IActionResult GetMessage()
+    {
+        return Ok("Hello from MessageService");
+    }
     [HttpGet]
     public async Task<List<Message>> Get() =>
         await _messageService.GetAsync();
