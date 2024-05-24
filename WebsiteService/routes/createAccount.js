@@ -1,12 +1,13 @@
 var express = require('express');
-var router = express.Router();
-const dal = require("../apiData/userData.js")
+const router = express.Router();
+const dal = require("../apiData/userData.js");
 
-/* GET home page. */
+/* GET create account page. */
 router.get('/', async function(req, res, next) {
-    res.render('createAccount');
+    res.render('createAccount', { title: 'Create Account' });
 });
 
+/* POST create account data. */
 router.post('/create', async function (req, res, next) {
     var username = req.body.username;
     var email = req.body.email;
@@ -19,7 +20,7 @@ router.post('/create', async function (req, res, next) {
     dal.doesUserUsernameExist(async (err, bool) => {
         if (err) {
             console.error('Error fetching user:', err);
-            return res.render("login", { message: 'An error occurred. Please try again later.' });
+            return res.render("createAccount", { message: 'An error occurred. Please try again later.' });
         }
 
         if (bool) {

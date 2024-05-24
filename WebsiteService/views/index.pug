@@ -5,17 +5,17 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Chain
     link(rel="stylesheet" href="/stylesheets/index.css")
-    script(src="/socket.io/socket.io.js") // Include Socket.IO client library
-    script(src="/javascripts/index.js" defer) // Ensure index.js is loaded after DOM is parsed
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/index.js" defer)
   body
     .app
       .dm-sidebar
         .dm-header
           span Direct Messages
-          .add-dm +
+          a.add-dm(href="/createChannel") +
         .dm-list
           each dm in dmList
-            a.dm-item(href=`/${dm.id}`)
+            a.dm-item(href=`/@me/${dm.id}`)
               .avatar
                 img(src="https://via.placeholder.com/40" alt="User Avatar")
               .dm-info
