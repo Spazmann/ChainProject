@@ -11,6 +11,7 @@ const dal = require('./apiData/messageData')
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var createAccountRouter = require('./routes/createAccount');
+var createChannelRouter = require('./routes/createChannel');
 
 const app = express();
 const server = http.createServer(app);
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/createAccount', createAccountRouter);
+app.use('/createChannel', createChannelRouter);
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -52,7 +54,7 @@ io.on('connection', (socket) => {
         socket.emit('message', {
           username: message.Username,
           messageContent: message.MessageContent,
-          date: message.date // Ensure the date is included
+          date: message.date 
         });
       });
 
@@ -64,11 +66,9 @@ io.on('connection', (socket) => {
   socket.on('newMessage', async (message) => {
     console.log('New message received:', message);
 
-    // Save the message to the database
     try {
       await dal.saveMessage(message);
 
-      // Broadcast the message to all clients in the same channel
       io.emit('message', message);
     } catch (error) {
       console.error('Error saving message:', error);
@@ -76,17 +76,13 @@ io.on('connection', (socket) => {
   });
 });
 
-// Catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// Error handler
 app.use(function(err, req, res, next) {
-  // Log the error
   console.error(err.stack);
   
-  // Respond with a 500 status and an error message
   res.status(err.status || 500);
   res.send('500: Internal Server Error');
 });

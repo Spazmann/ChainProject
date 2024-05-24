@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Create Channel - Chain
+    link(rel="stylesheet" href="/stylesheets/login.css")
+    script(src="/javascripts/login.js")
+  body
+    .login-container
+      .login-box
+        h1 Create Account
+        form(action="/createChannel/create" method="POST")
+          .input-group
+            label(for="channelName") Channel Name
+            input(type="text" id="channelName" name="channelName" placeholder="Enter your Channel Name" required)
+          .input-group
+            label(for="users") Users
+            input(type="text" id="users" name="users" placeholder="User1, User2, User3...." required)
+          if message
+            p.message= message
+          button.login-button(type="submit") Create Channel

@@ -8,6 +8,15 @@ router.get('/', async function(req, res, next) {
   if (!user) {
     res.render('login', { title: 'Login' });
   } else {
+    res.redirect('/@me');
+  }
+});
+
+router.get('/@me', async function(req, res, next) {
+  const user = req.session.user;
+  if (!user) {
+    res.render('login', { title: 'Login' });
+  } else {
     try {
       const channels = await dal.getUserChannels(user.id);
 
@@ -25,7 +34,7 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-router.get('/:channelId', async function(req, res, next) {
+router.get('/@me/:channelId', async function(req, res, next) {
   const user = req.session.user;
   if (!user) {
     res.render('login', { title: 'Login' });
