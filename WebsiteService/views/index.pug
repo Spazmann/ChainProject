@@ -5,7 +5,8 @@ html
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
     title Chain
     link(rel="stylesheet" href="/stylesheets/index.css")
-    script(src="/javascripts/index.js")
+    script(src="/socket.io/socket.io.js") // Include Socket.IO client library
+    script(src="/javascripts/index.js" defer) // Ensure index.js is loaded after DOM is parsed
   body
     .app
       .dm-sidebar
@@ -49,4 +50,4 @@ html
         if channelName
           .message-input
             input(type="text" placeholder="Type a message..." id="messageInput")
-            button.send-button(onclick="sendMessage()") Send
+            button.send-button Send

@@ -19,9 +19,20 @@ const getChannelMessages = async (channelId) => {
       console.error('Error fetching messages:', error);
       return [];
     }
-  };
+};
+
+const saveMessage = async (message) => {
+  try {
+    const response = await axios.post(`${apiBaseUrl}/message`, message);
+    return response.data;
+  } catch (error) {
+    console.error('Error saving message:', error);
+    return null;
+  }
+};
 
 module.exports = {
     getUserChannels,
-    getChannelMessages
+    getChannelMessages,
+    saveMessage
 };
