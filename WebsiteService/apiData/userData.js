@@ -8,9 +8,6 @@ const getUser = async (callback, username, password) => {
         const response = await axios.get(`${apiBaseUrl}/User/${username}`);
         const user = response.data;
 
-        console.log(user)
-        console.log(password)
-
         if (user && await passwordUtils.comparePassword(password, user.password)) {
             callback(null, user);
         } else {
@@ -19,6 +16,16 @@ const getUser = async (callback, username, password) => {
     } catch (err) {
         console.error('Error fetching user:', err);
         callback(err, null);
+    }
+};
+
+const getUsersForChannel = async (usernames) => {
+    try {
+        const response = await axios.post(`${apiBaseUrl}/User/multiple`, { usernames });
+        return response.data;
+    } catch (err) {
+        console.error('Error fetching users:', err);
+        return null;
     }
 };
 
@@ -50,6 +57,7 @@ const createUser = async (callback, username, email, password) => {
 
 module.exports = {
     getUser,
+    getUsersForChannel,
     doesUserUsernameExist,
     createUser
 };

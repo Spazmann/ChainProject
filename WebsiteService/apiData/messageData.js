@@ -31,8 +31,19 @@ const saveMessage = async (message) => {
   }
 };
 
+const createChannel = async (channel) => {
+  try {
+    const response = await axios.post(`${apiBaseUrl}/channel`, channel);
+    return response.data;
+  } catch (error) {
+    console.error('Error creating channel:', error);
+    return null;
+  }
+};
+
 module.exports = {
     getUserChannels,
     getChannelMessages,
-    saveMessage
-};
+    saveMessage,
+    createChannel
+}

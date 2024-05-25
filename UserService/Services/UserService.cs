@@ -45,4 +45,9 @@ public class UserService
     {
         await _usersCollection.DeleteOneAsync(x => x.Id == id);
     }
+
+    public async Task<List<User>> GetByUsernamesAsync(List<string> usernames)
+    {
+        return await _usersCollection.Find(user => usernames.Contains(user.Username)).ToListAsync();
+    }
 }

@@ -39,6 +39,18 @@ public class UserController : ControllerBase
         return user;
     }
 
+    [HttpPost("multiple")]
+    public async Task<ActionResult<List<User>>> GetMultipleByUsernames([FromBody] List<string> usernames)
+    {
+        if (usernames == null || usernames.Count == 0)
+        {
+            return BadRequest("Usernames are required");
+        }
+
+        var users = await _userService.GetByUsernamesAsync(usernames);
+        return Ok(users);
+    }
+
     [HttpGet("exists/{username}")]
     public async Task<IActionResult> DoesUserUsernameExist(string username)
     {
