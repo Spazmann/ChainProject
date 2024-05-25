@@ -12,8 +12,6 @@ public class MessageService
     private readonly IMongoCollection<Message> _messagesCollection;
     private readonly ILogger<MessageService> _logger;
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly Socket _socket;
-    private string basicUrl = "http://localhost:3007/message/";
 
     public MessageService(
         ILogger<MessageService> logger,
@@ -29,11 +27,7 @@ public class MessageService
         var mongoDatabase = mongoClient.GetDatabase(messageAPIDatabaseSettings.Value.DatabaseName);
         _messagesCollection = mongoDatabase.GetCollection<Message>(messageAPIDatabaseSettings.Value.MessageCollectionName);
 
-        // Initialize Socket.IO client
-        _socket = IO.Socket("http://localhost:3003");
-        _socket.On(Socket.EVENT_CONNECT, () => _logger.LogInformation("Connected to Socket.IO server"));
-        _socket.On(Socket.EVENT_DISCONNECT, () => _logger.LogInformation("Disconnected from Socket.IO server"));
-    }
+      }
 
     public async Task<List<Message>> GetAsync()
     {
@@ -69,8 +63,6 @@ public class MessageService
         try
         {
             await _messagesCollection.ReplaceOneAsync(x => x.Id == id, updatedMessage);
-            _logger.LogInformation("Message updated in MongoDB: {MessageContent}", updatedMessage.MessageContent);
-            _socket.Emit("updateMessage", updatedMessage);
         }
         catch (Exception ex)
         {
@@ -83,9 +75,6 @@ public class MessageService
         try
         {
             await _messagesCollection.DeleteOneAsync(x => x.Id == id);
-            _logger.LogInformation("Message removed from MongoDB: {MessageId}", id);
-            _socket.Emit("messageRemoved", id);
-            _logger.LogInformation("Emitted messageRemoved event: {MessageId}", id);
         }
         catch (Exception ex)
         {

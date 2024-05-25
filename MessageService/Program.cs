@@ -9,17 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MessageAPIDatabaseSettings>(
     builder.Configuration.GetSection("MessageAPIDatabaseSettings"));
 
-builder.Services.Configure<SocketIOSettings>(
-    builder.Configuration.GetSection("SocketIO"));
-
 builder.Services.Configure<ChannelAPIDatabaseSettings>(
     builder.Configuration.GetSection("ChannelAPIDatabaseSettings"));
 
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<MessageAPIDatabaseSettings>>().Value);
-
-builder.Services.AddSingleton(sp =>
-    sp.GetRequiredService<IOptions<SocketIOSettings>>().Value);
 
 builder.Services.AddSingleton(sp =>
     sp.GetRequiredService<IOptions<ChannelAPIDatabaseSettings>>().Value);
@@ -30,6 +24,7 @@ builder.Services.AddSingleton<ChannelService>();
 builder.Services.AddSingleton<IMongoClient>(s =>
     new MongoClient(builder.Configuration.GetValue<string>("ChannelAPIDatabaseSettings:ConnectionString")));
 
+builder.Services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -63,4 +58,14 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+try
+{
+    app.Run();
+}
+catch (Exception ex)
+{
+    // Log the exception and rethrow
+    Console.WriteLine($"Unhandled exception: {ex.Message}");
+    Console.WriteLine(ex.StackTrace);
+    throw;
+}

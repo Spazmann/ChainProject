@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  eeveeplushapi:
+    image: eeveeplushapi:latest
+    build:
+      context: MessageService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - mongo
+      - eurekaserver
+    networks:
+      - eevee-network
+
+  mongo:
+    image: mongo:4.2
+    ports:
+      - "27017:27017"
+    networks:
+      - eevee-network
+
+  eurekaserver:
+    image: springcloud/eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - eevee-network
+
+networks:
+  eevee-network:
+    driver: bridge
