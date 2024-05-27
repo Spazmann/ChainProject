@@ -4,8 +4,6 @@ using Steeltoe.Discovery.Eureka;
 using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 builder.Services.Configure<MessageAPIDatabaseSettings>(
     builder.Configuration.GetSection("MessageAPIDatabaseSettings"));
 
