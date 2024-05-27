@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #36393f;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-box, .signup-box {
+    background-color: #2f3136;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 350px;
+    margin-top: 20px;
+}
+
+.login-box h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-group input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #40444b;
+    color: #fff;
+    margin: 0 auto;
+    display: block;
+}
+
+.login-button {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7289da;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 0 auto; 
+    display: block;
+}
+
+.login-button:hover {
+    background-color: #5b6eae;
+}
+
+.logout-button {
+    width: calc(100% - 20px); 
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff4d4d;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 20px auto 0 auto; 
+    display: block;
+}
+
+.logout-button:hover {
+    background-color: #cc0000;
+}
+
+.signup-box p {
+    margin: 0;
+    font-size: 1em;
+}
+
+.signup-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #7289da;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.signup-link:hover {
+    background-color: #5b6eae;
+}
+
+.message {
+    color: #ff0000; 
+    margin-top: 10px;
+    font-weight: bold;
+}

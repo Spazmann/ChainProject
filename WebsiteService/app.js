@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var createAccountRouter = require('./routes/createAccount');
 var createChannelRouter = require('./routes/createChannel');
+var accountRouter = require('./routes/account');
 
 const app = express();
 const server = http.createServer(app);
@@ -37,6 +38,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/createAccount', createAccountRouter);
 app.use('/createChannel', createChannelRouter);
+app.use('/account', accountRouter);
 
 io.on('connection', (socket) => {
   console.log('A user connected');
