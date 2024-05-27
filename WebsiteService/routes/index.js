@@ -20,13 +20,18 @@ router.get('/@me', async function(req, res, next) {
     try {
       const channels = await dal.getUserChannels(user.id);
 
-      const dmList = channels.map(channel => ({
-        name: channel.channelName,
-        id: channel.channelId,
-        members: `${channel.users.length} Members`
-      }));
+      if (!Array.isArray(channels)) {
+        res.render('index', { title: 'Home', user });
+      } else {
+        const dmList = channels.map(channel => ({
+          name: channel.channelName,
+          id: channel.channelId,
+          members: `${channel.users.length} Members`
+        }));
 
-      res.render('index', { title: 'Home', dmList, user });
+        res.render('index', { title: 'Home', dmList, user });
+      }
+
     } catch (error) {
       console.error('Error retrieving data from database:', error);
       res.status(500).send('Internal Server Error');
@@ -43,6 +48,19 @@ router.get('/@me/:channelId', async function(req, res, next) {
       const channels = await dal.getUserChannels(user.id);
       const messages = await dal.getChannelMessages(req.params.channelId);
 
+
+
+      const dmList = channels.map(channel => ({
+        name: channel.channelName,
+        id: channel.channelId,
+        members: `${channel.users.length} Members`
+      }));
+
+      if (!Array.isArray(messages)) {
+        res.render('index', { title: 'Home', user, dmList, messageList: [], channelName: 'Unknown Channel' });
+        return;
+      }
+
       messages.forEach(message => {
         if (message.date) {
           message.dateObject = new Date(message.date);
@@ -50,12 +68,6 @@ router.get('/@me/:channelId', async function(req, res, next) {
       });
 
       messages.sort((a, b) => b.dateObject - a.dateObject);
-
-      const dmList = channels.map(channel => ({
-        name: channel.channelName,
-        id: channel.channelId,
-        members: `${channel.users.length} Members`
-      }));
 
       const messageList = messages.map(message => ({
         username: message.username,

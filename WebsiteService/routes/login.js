@@ -7,27 +7,25 @@ router.get('/', function(req, res) {
 });
 
 /* POST login page. */
-router.post('/', function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
+router.post('/', async (req, res) => {
+  const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.render("login", { message: 'Username and password are required' });
+    return res.render('login', { message: 'Username and password are required' });
   }
 
-  dal.getUser((err, jsonData) => {
-    if (err) {
-      console.error('Error fetching user:', err);
-      return res.render("login", { message: 'An error occurred. Please try again later.' });
-    }
-
-    if (jsonData != null) {
-      req.session.user = jsonData;
-      res.redirect('/');
+  try {
+    const user = await dal.getUser(username, password);
+    if (user) {
+      req.session.user = user;
+      return res.redirect('/');
     } else {
-      res.render("login", { message: 'Invalid username or password' });
+      return res.render('login', { message: 'Invalid username or password' });
     }
-  }, username, password);
+  } catch (error) {
+    console.error('Error during login process:', error);
+    return res.render('login', { message: 'An error occurred. Please try again later.' });
+  }
 });
 
 module.exports = router;

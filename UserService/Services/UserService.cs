@@ -48,6 +48,9 @@ public class UserService
 
     public async Task<List<User>> GetByUsernamesAsync(List<string> usernames)
     {
-        return await _usersCollection.Find(user => usernames.Contains(user.Username)).ToListAsync();
+        _logger.LogInformation("Fetching users with usernames: {Usernames}", string.Join(", ", usernames));
+        var users = await _usersCollection.Find(user => usernames.Contains(user.Username)).ToListAsync();
+        _logger.LogInformation("Fetched {Count} users", users.Count);
+        return users;
     }
 }

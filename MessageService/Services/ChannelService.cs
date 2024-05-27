@@ -56,11 +56,10 @@ public class ChannelService
         await _channelsCollection.DeleteOneAsync(x => x.ChannelId == id);
     }
 
-    public async Task<List<Channel>> GetByUserIdAsync(string userId)
+     public async Task<List<Channel>> GetByUserIdAsync(string userId)
     {
         _logger.LogInformation("Fetching channels for user ID: {UserId}", userId);
-        var objectId = new ObjectId(userId);
-        var filter = Builders<Channel>.Filter.ElemMatch(channel => channel.Users, user => user._id == objectId);
+        var filter = Builders<Channel>.Filter.ElemMatch(channel => channel.Users, user => user.Id == userId);
         var channels = await _channelsCollection.Find(filter).ToListAsync();
         _logger.LogInformation("Found {Count} channels for user ID: {UserId}", channels.Count, userId);
         return channels;

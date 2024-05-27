@@ -3,25 +3,25 @@ const passwordUtils = require('../security/password');
 
 const apiBaseUrl = 'http://localhost:5162'; // API 
 
-const getUser = async (callback, username, password) => {
+const getUser = async (username, password) => {
     try {
         const response = await axios.get(`${apiBaseUrl}/User/${username}`);
         const user = response.data;
 
         if (user && await passwordUtils.comparePassword(password, user.password)) {
-            callback(null, user);
+        return user;
         } else {
-            callback(new Error('Invalid username or password'), null);
+        return null;
         }
     } catch (err) {
         console.error('Error fetching user:', err);
-        callback(err, null);
+        throw err;
     }
 };
 
 const getUsersForChannel = async (usernames) => {
     try {
-        const response = await axios.post(`${apiBaseUrl}/User/multiple`, { usernames });
+        const response = await axios.post(`${apiBaseUrl}/User/multiple`, usernames);
         return response.data;
     } catch (err) {
         console.error('Error fetching users:', err);

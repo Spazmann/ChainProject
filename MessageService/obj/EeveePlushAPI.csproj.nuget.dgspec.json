@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {}
+    "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {
+    "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
+        "projectUniqueName": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
         "projectName": "EeveePlushAPI",
-        "projectPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
-        "packagesPath": "C:\\Users\\Darrell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Darrell\\OneDrive - Neumont College of Computer Science\\Documents\\3rd Year\\1st Quarter\\Service Project\\ChainProject\\ChainProject\\MessageService\\obj\\",
+        "projectPath": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\EeveePlushAPI.csproj",
+        "packagesPath": "C:\\Users\\dmann\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dmann\\Documents\\Neumont\\Service-Based Software Architecture Project\\ChainProject\\ChainProject\\ChainProject\\MessageService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Darrell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dmann\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -130,7 +130,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

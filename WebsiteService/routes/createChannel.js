@@ -12,7 +12,7 @@ router.get('/', async function(req, res, next) {
 router.post('/create', async function (req, res, next) {
     var channelName = req.body.channelName;
     const user = req.session.user;
-    var users = req.body.users + ", " + user.username;
+    var users = req.body.users ? req.body.users + ", " + user.username : user.username;
 
     if (!channelName || !users) {
         return res.render("createChannel", { message: 'You need a Channel Name and/or Users' });

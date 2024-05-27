@@ -5,9 +5,9 @@ public class Channel
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string? ChannelId { get; set; }
+    public string ChannelId { get; set; } = ObjectId.GenerateNewId().ToString();
 
     public string ChannelName { get; set; } = null!;
 
-    public User[] Users { get; set; }
+    public List<User> Users { get; set; } = new List<User>();
 }

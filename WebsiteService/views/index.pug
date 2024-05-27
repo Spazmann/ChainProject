@@ -14,14 +14,15 @@ html
           span Direct Messages
           a.add-dm(href="/createChannel") +
         .dm-list
-          each dm in dmList
-            a.dm-item(href=`/@me/${dm.id}`)
-              .avatar
-                img(src="https://via.placeholder.com/40" alt="User Avatar")
-              .dm-info
-                .dm-name= dm.name
-                if dm.members
-                  .dm-members= dm.members
+          if dmList
+            each dm in dmList
+              a.dm-item(href=`/@me/${dm.id}`)
+                .avatar
+                  img(src="https://via.placeholder.com/40" alt="User Avatar")
+                .dm-info
+                  .dm-name= dm.name
+                  if dm.members
+                    .dm-members= dm.members
       .main-content
         .main-content-header
           .header-left
@@ -36,17 +37,16 @@ html
             else
               a.user-header(href="#")
                 .user-header-login= "Login"
-        if messageList && messageList.length > 0
-          .message-list
-            each message in messageList
-              .message-item
-                .avatar
-                  img(src="https://via.placeholder.com/40" alt="User Avatar")
-                .message-info
-                  .message-stats
-                    .message-username= message.username
-                    .message-date= message.date
-                  .message-message= message.message
+        .message-list
+          each message in messageList
+            .message-item
+              .avatar
+                img(src="https://via.placeholder.com/40" alt="User Avatar")
+              .message-info
+                .message-stats
+                  .message-username= message.username
+                  .message-date= message.date
+                .message-message= message.message
         if channelName
           .message-input
             input(type="text" placeholder="Type a message..." id="messageInput")

@@ -28,7 +28,7 @@ public class MessageController : ControllerBase
 
         if (messages == null || messages.Count == 0)
         {
-            return NotFound();
+            return NoContent();
         }
 
         return Ok(messages);
@@ -54,7 +54,7 @@ public class MessageController : ControllerBase
 
         if (message is null)
         {
-            return NotFound();
+            return NoContent();
         }
 
         updatedMessage.Id = message.Id;
@@ -71,7 +71,7 @@ public class MessageController : ControllerBase
 
         if (message is null)
         {
-            return NotFound();
+            return NoContent();
         }
 
         await _messageService.RemoveAsync(id);

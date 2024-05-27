@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -28,7 +30,7 @@ public class ChannelController : ControllerBase
         if (channel is null)
         {
             _logger.LogWarning("Channel with ID: {ChannelId} not found.", id);
-            return NotFound();
+            return NoContent();
         }
 
         return channel;
@@ -44,7 +46,7 @@ public class ChannelController : ControllerBase
         if (channels is null || channels.Count == 0)
         {
             _logger.LogWarning("No channels found for user ID: {UserId}", userId);
-            return NotFound();
+            return NoContent();
         }
 
         return channels;
@@ -53,10 +55,16 @@ public class ChannelController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Channel newChannel)
     {
+        if (string.IsNullOrEmpty(newChannel.ChannelId))
+        {
+            newChannel.ChannelId = ObjectId.GenerateNewId().ToString();
+        }
+
         await _channelService.CreateAsync(newChannel);
 
-        return CreatedAtAction(nameof(Get), new { id = newChannel.ChannelId }, newChannel);
+        return CreatedAtAction(nameof(Get), new { id = newChannel.ChannelId.ToString() }, newChannel);
     }
+
 
     [HttpPut("{id:length(24)}")]
     public async Task<IActionResult> Update(string id, Channel updatedChannel)
@@ -65,7 +73,7 @@ public class ChannelController : ControllerBase
 
         if (channel is null)
         {
-            return NotFound();
+            return NoContent();
         }
 
         updatedChannel.ChannelId = channel.ChannelId;
@@ -82,7 +90,7 @@ public class ChannelController : ControllerBase
 
         if (channel is null)
         {
-            return NotFound();
+            return NoContent();
         }
 
         await _channelService.RemoveAsync(id);
