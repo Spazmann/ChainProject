@@ -2,7 +2,16 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async function(req, res, next) {
-    res.render('account', { title: 'Account' });
+    const user = req.session.user;
+
+    if (user) {
+        const username = user.username;
+        const email = user.email;
+
+        res.render('account', { title: 'Account', username, email });
+    } else {
+        res.redirect('/login');
+    }
 });
 
 router.post('/updateAccount', async function(req, res, next) {
@@ -18,6 +27,5 @@ router.post('/logout', async function(req, res, next) {
         }
     });
 });
-
 
 module.exports = router;

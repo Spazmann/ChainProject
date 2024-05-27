@@ -12,11 +12,11 @@ html
         h1 Account
         form(action="/account/updateAccount" method="POST")
           .input-group
-            label(for="username") Username
-            input(type="text" id="username" name="username" placeholder="Enter your new username" required)
+            label(for="username") Username 
+            input(type="text" id="username" name="username" placeholder="Enter your new username" value=username required)
           .input-group
             label(for="email") Email
-            input(type="email" id="email" name="email" placeholder="Enter your new email" required)
+            input(type="email" id="email" name="email" placeholder="Enter your new email" value=email required)
           .input-group
             label(for="password") Password
             input(type="password" id="password" name="password" placeholder="Enter your new password" required)
