@@ -37,16 +37,17 @@ html
             else
               a.user-header(href="#")
                 .user-header-login= "Login"
-        .message-list
-          each message in messageList
-            .message-item
-              .avatar
-                img(src="https://via.placeholder.com/40" alt="User Avatar")
-              .message-info
-                .message-stats
-                  .message-username= message.username
-                  .message-date= message.date
-                .message-message= message.message
+        if channelName
+          .message-list
+            each message in messageList
+              .message-item
+                .avatar
+                  img(src="https://via.placeholder.com/40" alt="User Avatar")
+                .message-info
+                  .message-stats
+                    .message-username= message.username
+                    .message-date= message.date
+                  .message-message= message.message
         if channelName
           .message-input
             input(type="text" placeholder="Type a message..." id="messageInput")

@@ -41,9 +41,19 @@ const createChannel = async (channel) => {
   }
 };
 
+const getChannel = async (id) => {
+  try {
+      const response = await axios.get(`${apiBaseUrl}/Channel/${id}`);
+      return response.data;
+  } catch (err) {
+      throw err;
+  }
+};
+
 module.exports = {
     getUserChannels,
     getChannelMessages,
     saveMessage,
-    createChannel
+    createChannel,
+    getChannel
 }

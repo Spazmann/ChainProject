@@ -48,16 +48,16 @@ router.get('/@me/:channelId', async function(req, res, next) {
       const channels = await dal.getUserChannels(user.id);
       const messages = await dal.getChannelMessages(req.params.channelId);
 
-
-
       const dmList = channels.map(channel => ({
         name: channel.channelName,
         id: channel.channelId,
         members: `${channel.users.length} Members`
       }));
 
+      const channelName = dmList.find(channel => channel.id === req.params.channelId)?.name || 'Unknown Channel';
+
       if (!Array.isArray(messages)) {
-        res.render('index', { title: 'Home', user, dmList, messageList: [], channelName: 'Unknown Channel' });
+        res.render('index', { title: 'Home', user, dmList, messageList: [], channelName });
         return;
       }
 
@@ -75,7 +75,7 @@ router.get('/@me/:channelId', async function(req, res, next) {
         date: message.dateObject ? message.dateObject.toLocaleString() : 'Invalid Date'
       }));
 
-      const channelName = dmList.find(channel => channel.id === req.params.channelId)?.name || 'Unknown Channel';
+
 
       res.render('index', { title: 'Home', dmList, messageList, user, channelName });
     } catch (error) {
