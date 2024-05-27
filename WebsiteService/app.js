@@ -1,19 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const session = require('express-session');
 const http = require('http');
 const socketIo = require('socket.io');
-const dal = require('./apiData/messageData')
-require('./eureka-client');
+const dal = require('./apiData/messageData');
+const eurekaClient = require('./eureka-client');
 
-var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var createAccountRouter = require('./routes/createAccount');
-var createChannelRouter = require('./routes/createChannel');
-var accountRouter = require('./routes/account');
+const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+const createAccountRouter = require('./routes/createAccount');
+const createChannelRouter = require('./routes/createChannel');
+const accountRouter = require('./routes/account');
 
 const app = express();
 const server = http.createServer(app);
@@ -40,6 +40,10 @@ app.use('/login', loginRouter);
 app.use('/createAccount', createAccountRouter);
 app.use('/createChannel', createChannelRouter);
 app.use('/account', accountRouter);
+
+app.get('/status', (req, res) => {
+  res.status(200).send('OK');
+});
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -79,11 +83,11 @@ io.on('connection', (socket) => {
   });
 });
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   
   res.status(err.status || 500);
@@ -93,6 +97,9 @@ app.use(function(err, req, res, next) {
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  eurekaClient.start((error) => {
+    console.log(error || 'Eureka client started successfully!');
+  });
 });
 
 module.exports = app;

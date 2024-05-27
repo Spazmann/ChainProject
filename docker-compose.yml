@@ -12,8 +12,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
-      - mongo
-      - eurekaserver
+     - mongo
+     - eurekaserver
     networks:
       - messagenetwork
 
@@ -23,7 +23,7 @@ services:
       - "27017:27017"
     networks:
       - messagenetwork
-  
+
   websiteservice:
     image: websiteservice:latest
     build:
@@ -34,6 +34,8 @@ services:
     environment:
       EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
     depends_on:
+      - eeveeplushapi
+      - userservice
       - eurekaserver
     networks:
       - messagenetwork
@@ -49,8 +51,8 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
-      - mongo
-      - eurekaserver
+     - mongo
+     - eurekaserver
     networks:
       - messagenetwork
 
