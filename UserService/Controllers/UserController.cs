@@ -76,7 +76,7 @@ public class UserController : ControllerBase
         return CreatedAtAction(nameof(Get), new { id = newUser.Id }, newUser);
     }
 
-    [HttpPut("{id:length(24)}")]
+    [HttpPut("{id}")]
     public async Task<IActionResult> Update(string id, User updatedUser)
     {
         var user = await _userService.GetAsync(id);

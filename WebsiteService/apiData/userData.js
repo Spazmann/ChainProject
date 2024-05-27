@@ -9,9 +9,9 @@ const getUser = async (username, password) => {
         const user = response.data;
 
         if (user && await passwordUtils.comparePassword(password, user.password)) {
-        return user;
+            return user;
         } else {
-        return null;
+            return null;
         }
     } catch (err) {
         console.error('Error fetching user:', err);
@@ -29,29 +29,47 @@ const getUsersForChannel = async (usernames) => {
     }
 };
 
-const doesUserUsernameExist = async (callback, username) => {
+const doesUserUsernameExist = async (username) => {
     try {
         const response = await axios.get(`${apiBaseUrl}/User/exists/${username}`);
-        callback(null, response.data);
+        return response.data;
     } catch (err) {
         if (err.response && err.response.status === 404) {
-            callback(null, false);
+            return false;
         } else {
-            callback(err);
+            throw err;
         }
     }
 };
 
-const createUser = async (callback, username, email, password) => {
+const createUser = async (username, email, password) => {
     try {
         const response = await axios.post(`${apiBaseUrl}/User`, {
             username: username,
             email: email,
             password: passwordUtils.hashPassword(password)
         });
-        callback(null, response.data);
+        return response.data;
     } catch (err) {
-        callback(err);
+        throw err;
+    }
+};
+
+const updateUser = async (id, newUsername, email, password) => {
+    try {
+        const payload = {
+            username: newUsername,
+            email: email,
+            password: passwordUtils.hashPassword(password)
+        };
+        
+        console.log('Payload being sent:', payload);
+        
+        const response = await axios.put(`${apiBaseUrl}/User/${id}`, payload);
+        return response.data;
+    } catch (err) {
+        console.error('Error updating user:', err.response ? err.response.data : err.message);
+        throw err;
     }
 };
 
@@ -59,5 +77,6 @@ module.exports = {
     getUser,
     getUsersForChannel,
     doesUserUsernameExist,
-    createUser
+    createUser,
+    updateUser
 };
