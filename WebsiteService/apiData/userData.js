@@ -1,7 +1,7 @@
 const axios = require('axios');
 const passwordUtils = require('../security/password');
 
-const apiBaseUrl = 'http://localhost:5162'; // API 
+const apiBaseUrl = 'http://userservice:5162'; // API 
 
 const getUser = async (username, password) => {
     try {

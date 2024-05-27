@@ -3,6 +3,7 @@ version: '3.8'
 services:
   eeveeplushapi:
     image: eeveeplushapi:latest
+    container_name: eeveeplushapi
     build:
       context: MessageService
       dockerfile: Dockerfile
@@ -39,6 +40,7 @@ services:
 
   userservice:
     image: userservice:latest
+    container_name: userservice
     build:
       context: UserService
       dockerfile: Dockerfile

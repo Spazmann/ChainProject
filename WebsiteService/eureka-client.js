@@ -4,9 +4,9 @@ const client = new Eureka({
     app: 'nodejs-service', 
     hostName: 'localhost',
     ipAddr: '127.0.0.1',
-    statusPageUrl: 'http://localhost:3000/status',
+    statusPageUrl: 'http://localhost:3001/status',
     port: {
-      '$': 3000, 
+      '$': 3001, 
       '@enabled': 'true',
     },
     vipAddress: 'nodejs-service',

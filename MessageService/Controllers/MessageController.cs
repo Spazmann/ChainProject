@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Cors;
 
 [ApiController]
 [Route("[controller]")]
-[EnableCors("AllowLocalhost3002")]
+[EnableCors("AllowLocalhost3001")]
 public class MessageController : ControllerBase
 {
     private readonly MessageService _messageService;

@@ -12,9 +12,9 @@ WORKDIR /app
 
 COPY --from=build-env /app/out .
 
-ENV ASPNETCORE_URLS=http://+:5109
+ENV ASPNETCORE_URLS=http://+:5162
 ENV ASPNETCORE_ENVIRONMENT=Development
 
-EXPOSE 5109
+EXPOSE 5162
 
 ENTRYPOINT ["dotnet", "UserService.dll"]

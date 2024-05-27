@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const socket = io('http://localhost:3000'); 
+  const socket = io('http://localhost:3001'); 
 
   const messageInput = document.getElementById('messageInput');
   const sendButton = document.querySelector('.send-button');
