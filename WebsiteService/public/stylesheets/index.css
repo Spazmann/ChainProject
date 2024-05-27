@@ -34,6 +34,8 @@ body {
 .add-dm {
   padding-right: 20px;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .dm-list {
@@ -49,6 +51,8 @@ body {
   margin-bottom: 5px;
   cursor: pointer;
   border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .dm-item:hover {
