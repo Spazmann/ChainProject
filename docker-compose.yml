@@ -14,22 +14,54 @@ services:
       - mongo
       - eurekaserver
     networks:
-      - eevee-network
+      - messagenetwork
 
   mongo:
     image: mongo:4.2
     ports:
       - "27017:27017"
     networks:
-      - eevee-network
+      - messagenetwork
+  
+  websiteservice:
+    image: websiteservice:latest
+    build:
+      context: WebsiteService
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+    depends_on:
+      - eurekaserver
+    networks:
+      - messagenetwork
+
+  userservice:
+    image: userservice:latest
+    build:
+      context: UserService
+      dockerfile: Dockerfile
+    ports:
+      - "5162:5162"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - mongo
+      - eurekaserver
+    networks:
+      - messagenetwork
 
   eurekaserver:
-    image: springcloud/eureka
+    container_name: eurekaserver
+    image: steeltoeoss/eureka-server:latest
+    restart: always
+    hostname: eurekaserver
     ports:
-      - "8761:8761"
+      - 8761:8761
     networks:
-      - eevee-network
+      - messagenetwork
 
 networks:
-  eevee-network:
+  messagenetwork:
     driver: bridge

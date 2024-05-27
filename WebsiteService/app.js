@@ -7,6 +7,7 @@ const session = require('express-session');
 const http = require('http');
 const socketIo = require('socket.io');
 const dal = require('./apiData/messageData')
+require('./eureka-client');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
