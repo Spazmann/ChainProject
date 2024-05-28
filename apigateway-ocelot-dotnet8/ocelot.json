@@ -1,9 +1,9 @@
 {
   "Routes": [
     {
-      "ServiceName": "WEBSITESERVICE",
+      "ServiceName": "MESSAGESERVICE",
       "DownstreamPathTemplate": "/{everything}",
-      "UpstreamPathTemplate": "/websiteservice/{everything}",
+      "UpstreamPathTemplate": "/messageservice/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -20,7 +20,7 @@
       }
     },
     {
-      "ServiceName": "USERSERVICE",
+      "ServiceName": "userservice",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/userservice/{everything}",
       "UpstreamHttpMethod": [
@@ -39,9 +39,9 @@
       }
     },
     {
-      "ServiceName": "MESSAGESERVICE",
+      "ServiceName": "websiteservice",
       "DownstreamPathTemplate": "/{everything}",
-      "UpstreamPathTemplate": "/messageservice/{everything}",
+      "UpstreamPathTemplate": "/websiteservice/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
@@ -68,6 +68,13 @@
       "Host": "eurekaserver",
       "Port": 8761,
       "Type": "Eureka"
+    },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Debug",
+        "System": "Information",
+        "Microsoft": "Information"
+      }
     }
   }
 }

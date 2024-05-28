@@ -3,7 +3,8 @@ version: '3.8'
 services:
   messageservice:
     image: messageservice:latest
-    container_name: messageservice
+    container_name: MESSAGESERVICE
+    hostname: MESSAGESERVICE
     build:
       context: MessageService
       dockerfile: Dockerfile
@@ -13,9 +14,9 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
     depends_on:
-     - mongo
-     - eurekaserver
-     - Ocelot
+      - mongo
+      - eurekaserver
+      - Ocelot
     networks:
       - messagenetwork
 

@@ -12,9 +12,6 @@ WORKDIR /app
 
 COPY --from=build-env /app/out .
 
-ENV ASPNETCORE_URLS=http://+:5001
-ENV ASPNETCORE_ENVIRONMENT=Development
-
-EXPOSE 5001
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "EeveePlushAPI.dll"]
