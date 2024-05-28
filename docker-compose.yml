@@ -1,6 +1,69 @@
 version: '3.8'
 
 services:
+  messageservice:
+    image: messageservice:latest
+    container_name: MESSAGESERVICE
+    hostname: MESSAGESERVICE
+    build:
+      context: MessageService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  mongo:
+    image: mongo:4.2
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - messagenetwork
+
+  websiteservice:
+    image: websiteservice:latest
+    container_name: websiteservice
+    build:
+      context: WebsiteService
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+    depends_on:
+      - messageservice
+      - userservice
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  userservice:
+    image: userservice:latest
+    container_name: userservice
+    build:
+      context: UserService
+      dockerfile: Dockerfile
+    ports:
+      - "5162:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+    depends_on:
+     - mongo
+     - eurekaserver
+     - Ocelot
+    networks:
+      - messagenetwork
+
   eurekaserver:
     container_name: eurekaserver
     image: steeltoeoss/eureka-server:latest
