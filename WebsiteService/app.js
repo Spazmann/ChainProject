@@ -7,7 +7,7 @@ const session = require('express-session');
 const http = require('http');
 const socketIo = require('socket.io');
 const dal = require('./apiData/messageData');
-const eurekaClient = require('./eureka-client');
+//const eurekaClient = require('./eureka-client');
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
@@ -41,9 +41,9 @@ app.use('/createAccount', createAccountRouter);
 app.use('/createChannel', createChannelRouter);
 app.use('/account', accountRouter);
 
-app.get('/status', (req, res) => {
-  res.status(200).send('OK');
-});
+//app.get('/status', (req, res) => {
+//  res.status(200).send('OK');
+//});
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -97,9 +97,9 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-  eurekaClient.start((error) => {
-    console.log(error || 'Eureka client started successfully!');
-  });
+//  eurekaClient.start((error) => {
+//    console.log(error || 'Eureka client started successfully!');
+//  });
 });
 
 module.exports = app;

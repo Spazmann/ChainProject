@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiBaseUrl = 'http://MESSAGESERVICE:5041';
+const apiBaseUrl = 'http://host.docker.internal:5041/messageservice';
 
 const getUserChannels = async (id) => {
     try {

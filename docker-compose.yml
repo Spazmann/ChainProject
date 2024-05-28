@@ -36,15 +36,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
-    environment:
-      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
-    depends_on:
-      - messageservice
-      - userservice
-      - eurekaserver
-      - Ocelot
-    networks:
-      - messagenetwork
 
   userservice:
     image: userservice:latest
