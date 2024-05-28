@@ -1,26 +1,7 @@
 {
   "Routes": [
     {
-      "ServiceName": "WEBSITESERVICE",
-      "DownstreamPathTemplate": "/{everything}",
-      "UpstreamPathTemplate": "/websiteservice/{everything}",
-      "UpstreamHttpMethod": [
-        "GET",
-        "POST",
-        "PUT",
-        "DELETE"
-      ],
-      "FileCacheOptions": {
-        "TtlSeconds": 15
-      },
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection",
-        "Key": null,
-        "Expiry": 0
-      }
-    },
-    {
-      "ServiceName": "USERSERVICE",
+      "ServiceName": "userservice",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/userservice/{everything}",
       "UpstreamHttpMethod": [
@@ -33,13 +14,11 @@
         "TtlSeconds": 15
       },
       "LoadBalancerOptions": {
-        "Type": "LeastConnection",
-        "Key": null,
-        "Expiry": 0
+        "Type": "LeastConnection"
       }
     },
     {
-      "ServiceName": "MESSAGESERVICE",
+      "ServiceName": "messageservice",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/messageservice/{everything}",
       "UpstreamHttpMethod": [
@@ -52,9 +31,7 @@
         "TtlSeconds": 15
       },
       "LoadBalancerOptions": {
-        "Type": "LeastConnection",
-        "Key": null,
-        "Expiry": 0
+        "Type": "LeastConnection"
       }
     }
   ],

@@ -1,68 +1,6 @@
 version: '3.8'
 
 services:
-  messageservice:
-    image: messageservice:latest
-    container_name: messageservice
-    build:
-      context: MessageService
-      dockerfile: Dockerfile
-    ports:
-      - "5001:8080"
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
-    depends_on:
-     - mongo
-     - eurekaserver
-     - Ocelot
-    networks:
-      - messagenetwork
-
-  mongo:
-    image: mongo:4.2
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    networks:
-      - messagenetwork
-
-  websiteservice:
-    image: websiteservice:latest
-    container_name: websiteservice
-    build:
-      context: WebsiteService
-      dockerfile: Dockerfile
-    ports:
-      - "3001:3001"
-    environment:
-      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
-    depends_on:
-      - messageservice
-      - userservice
-      - eurekaserver
-      - Ocelot
-    networks:
-      - messagenetwork
-
-  userservice:
-    image: userservice:latest
-    container_name: userservice
-    build:
-      context: UserService
-      dockerfile: Dockerfile
-    ports:
-      - "5162:8080"
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
-    depends_on:
-     - mongo
-     - eurekaserver
-     - Ocelot
-    networks:
-      - messagenetwork
-
   eurekaserver:
     container_name: eurekaserver
     image: steeltoeoss/eureka-server:latest
@@ -86,6 +24,152 @@ services:
       - eurekaserver
     environment:
       EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+
+  mongo:
+    image: mongo:4.2
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - messagenetwork
+
+  messageservice0:
+    image: messageservice:latest
+    container_name: messageservice0
+    build:
+      context: MessageService
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+      EUREKA__INSTANCE__INSTANCEID: messageservice0
+      EUREKA__INSTANCE__NONSECUREPORT: 8080
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  messageservice1:
+    image: messageservice:latest
+    container_name: messageservice1
+    build:
+      context: MessageService
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+      EUREKA__INSTANCE__INSTANCEID: messageservice1
+      EUREKA__INSTANCE__NONSECUREPORT: 8080
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  messageservice2:
+    image: messageservice:latest
+    container_name: messageservice2
+    build:
+      context: MessageService
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+      EUREKA__INSTANCE__INSTANCEID: messageservice2
+      EUREKA__INSTANCE__NONSECUREPORT: 8080
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  userservice0:
+    image: userservice:latest
+    container_name: userservice0
+    build:
+      context: UserService
+      dockerfile: Dockerfile
+    ports:
+      - "8091:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+      EUREKA__INSTANCE__INSTANCEID: userservice0
+      EUREKA__INSTANCE__NONSECUREPORT: 8080
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  userservice1:
+    image: userservice:latest
+    container_name: userservice1
+    build:
+      context: UserService
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+      EUREKA__INSTANCE__INSTANCEID: userservice1
+      EUREKA__INSTANCE__NONSECUREPORT: 8080
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  userservice2:
+    image: userservice:latest
+    container_name: userservice2
+    build:
+      context: UserService
+      dockerfile: Dockerfile
+    ports:
+      - "8093:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
+      EUREKA__INSTANCE__INSTANCEID: userservice2
+      EUREKA__INSTANCE__NONSECUREPORT: 8080
+    depends_on:
+      - mongo
+      - eurekaserver
+      - Ocelot
+    networks:
+      - messagenetwork
+
+  websiteservice:
+    image: websiteservice:latest
+    container_name: websiteservice
+    build:
+      context: WebsiteService
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - messageservice0
+      - messageservice1
+      - messageservice2
+      - userservice0
+      - userservice1
+      - userservice2
+    networks:
+      - messagenetwork
 
 networks:
   messagenetwork:
