@@ -9,15 +9,7 @@
         "POST",
         "PUT",
         "DELETE"
-      ],
-      "FileCacheOptions": {
-        "TtlSeconds": 15
-      },
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection",
-        "Key": null,
-        "Expiry": 0
-      }
+      ]
     },
     {
       "ServiceName": "USERSERVICE",
@@ -28,15 +20,7 @@
         "POST",
         "PUT",
         "DELETE"
-      ],
-      "FileCacheOptions": {
-        "TtlSeconds": 15
-      },
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection",
-        "Key": null,
-        "Expiry": 0
-      }
+      ]
     }
   ],
   "GlobalConfiguration": {
@@ -54,7 +38,8 @@
       "LogLevel": {
         "Default": "Debug",
         "System": "Information",
-        "Microsoft": "Information"
+        "Microsoft": "Information",
+        "Ocelot": "Debug"
       }
     }
   }
