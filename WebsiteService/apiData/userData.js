@@ -3,9 +3,14 @@ const passwordUtils = require('../security/password');
 
 const apiBaseUrl = 'http://userservice:5162'; // API 
 
+const axiosInstance = axios.create({
+    baseURL: apiBaseUrl,
+    timeout: 5000, // Set a timeout of 5 seconds
+});
+
 const getUser = async (username, password) => {
     try {
-        const response = await axios.get(`${apiBaseUrl}/User/${username}`);
+        const response = await axiosInstance.get(`/User/${username}`);
         const user = response.data;
 
         if (user && await passwordUtils.comparePassword(password, user.password)) {
@@ -21,7 +26,7 @@ const getUser = async (username, password) => {
 
 const getUsersForChannel = async (usernames) => {
     try {
-        const response = await axios.post(`${apiBaseUrl}/User/multiple`, usernames);
+        const response = await axiosInstance.post(`/User/multiple`, usernames);
         return response.data;
     } catch (err) {
         console.error('Error fetching users:', err);
@@ -31,7 +36,7 @@ const getUsersForChannel = async (usernames) => {
 
 const doesUserUsernameExist = async (username) => {
     try {
-        const response = await axios.get(`${apiBaseUrl}/User/exists/${username}`);
+        const response = await axiosInstance.get(`/User/exists/${username}`);
         return response.data;
     } catch (err) {
         if (err.response && err.response.status === 404) {
@@ -44,7 +49,7 @@ const doesUserUsernameExist = async (username) => {
 
 const createUser = async (username, email, password) => {
     try {
-        const response = await axios.post(`${apiBaseUrl}/User`, {
+        const response = await axiosInstance.post(`/User`, {
             username: username,
             email: email,
             password: passwordUtils.hashPassword(password)
@@ -65,7 +70,7 @@ const updateUser = async (id, newUsername, email, password) => {
         
         console.log('Payload being sent:', payload);
         
-        const response = await axios.put(`${apiBaseUrl}/User/${id}`, payload);
+        const response = await axiosInstance.put(`/User/${id}`, payload);
         return response.data;
     } catch (err) {
         console.error('Error updating user:', err.response ? err.response.data : err.message);

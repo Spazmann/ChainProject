@@ -17,24 +17,25 @@ router.post('/create', async function (req, res, next) {
         return res.render("createAccount", { message: 'Username, email, and password are required' });
     }
 
-    dal.doesUserUsernameExist(async (err, bool) => {
-        if (err) {
-            console.error('Error fetching user:', err);
-            return res.render("createAccount", { message: 'An error occurred. Please try again later.' });
-        }
+    console.log(`1. Received create account request - Username: ${username}, Email: ${email}, Password: ${password}`);
 
-        if (bool) {
+    try {
+        console.log("2. Checking if username exists...");
+        const userExists = await dal.doesUserUsernameExist(username);
+        console.log(`3. Username exists: ${userExists}`);
+
+        if (userExists) {
             return res.render("createAccount", { message: 'Username already exists' });
         } else {
-            dal.createUser((err, newUser) => {
-                if (err) {
-                    console.error('Error creating user:', err);
-                    return res.render("createAccount", { message: 'An error occurred. Please try again later.' });
-                }
-                res.redirect('/login');
-            }, username, email, password);
+            console.log("4. Creating new user...");
+            await dal.createUser(username, email, password);
+            console.log("5. User created successfully, redirecting to login.");
+            res.redirect('/login');
         }
-    }, username);
+    } catch (err) {
+        console.error('Error processing request:', err);
+        res.render("createAccount", { message: 'An error occurred. Please try again later.' });
+    }
 });
 
 module.exports = router;
