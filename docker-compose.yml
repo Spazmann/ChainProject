@@ -4,7 +4,7 @@ services:
   messageservice:
     image: messageservice:latest
     container_name: MESSAGESERVICE
-    hostname: MESSAGESERVICE
+    hostname: messageservice
     build:
       context: MessageService
       dockerfile: Dockerfile
@@ -16,7 +16,7 @@ services:
     depends_on:
       - mongo
       - eurekaserver
-      - Ocelot
+      - ocelot
     networks:
       - messagenetwork
 
@@ -42,13 +42,14 @@ services:
       - messageservice
       - userservice
       - eurekaserver
-      - Ocelot
+      - ocelot
     networks:
       - messagenetwork
 
   userservice:
     image: userservice:latest
-    container_name: userservice
+    container_name: USERSERVICE
+    hostname: userservice
     build:
       context: UserService
       dockerfile: Dockerfile
@@ -58,9 +59,9 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       EUREKA__CLIENT__SERVICEURL__DEFAULTZONE: http://eurekaserver:8761/eureka/
     depends_on:
-     - mongo
-     - eurekaserver
-     - Ocelot
+      - mongo
+      - eurekaserver
+      - ocelot
     networks:
       - messagenetwork
 
@@ -74,11 +75,11 @@ services:
     networks:
       - messagenetwork
 
-  Ocelot:
-    container_name: Ocelot
+  ocelot:
+    container_name: ocelot
     build: ./apigateway-ocelot-dotnet8
     image: ocelotgatewayapi:1
-    hostname: Ocelot
+    hostname: ocelot
     ports:
       - 5041:8080
     networks:

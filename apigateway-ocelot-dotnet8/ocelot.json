@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "ServiceName": "MESSAGESERVICE",
+      "ServiceName": "messageservice",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/messageservice/{everything}",
       "UpstreamHttpMethod": [
@@ -59,7 +59,7 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://Ocelot:80",
+    "BaseUrl": "http://ocelot:80",
     "RequestIdKey": "OcRequestId",
     "DownstreamScheme": "http",
     "ReRoutesCaseSensitive": false,
