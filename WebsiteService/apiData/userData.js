@@ -1,7 +1,7 @@
 const axios = require('axios');
 const passwordUtils = require('../security/password');
 
-const apiBaseUrl = 'http://userservice:5162'; // API 
+const apiBaseUrl = 'http://USERSERVICE:5041'; // API 
 
 const axiosInstance = axios.create({
     baseURL: apiBaseUrl,

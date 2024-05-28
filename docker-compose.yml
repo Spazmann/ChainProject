@@ -48,7 +48,8 @@ services:
 
   userservice:
     image: userservice:latest
-    container_name: userservice
+    container_name: USERSERVICE
+    hostname: USERSERVICE
     build:
       context: UserService
       dockerfile: Dockerfile

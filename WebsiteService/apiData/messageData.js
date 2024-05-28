@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiBaseUrl = 'http://messageservice:5001';
+const apiBaseUrl = 'http://MESSAGESERVICE:5041';
 
 const getUserChannels = async (id) => {
     try {

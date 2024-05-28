@@ -20,28 +20,9 @@
       }
     },
     {
-      "ServiceName": "userservice",
+      "ServiceName": "USERSERVICE",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/userservice/{everything}",
-      "UpstreamHttpMethod": [
-        "GET",
-        "POST",
-        "PUT",
-        "DELETE"
-      ],
-      "FileCacheOptions": {
-        "TtlSeconds": 15
-      },
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection",
-        "Key": null,
-        "Expiry": 0
-      }
-    },
-    {
-      "ServiceName": "websiteservice",
-      "DownstreamPathTemplate": "/{everything}",
-      "UpstreamPathTemplate": "/websiteservice/{everything}",
       "UpstreamHttpMethod": [
         "GET",
         "POST",
