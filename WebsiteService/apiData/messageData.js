@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiBaseUrl = 'http://eeveeplushapi:5001';
+const apiBaseUrl = 'http://messageservice:5001';
 
 const getUserChannels = async (id) => {
     try {
